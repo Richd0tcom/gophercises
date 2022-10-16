@@ -24,10 +24,42 @@ func main(){
 	r := csv.NewReader(file)
 	lines, errr := r.ReadAll()
 	if errr != nil {
-		exit("parse the provided csv")
+		exit("Failed to parse the provided csv")
 	}
-	fmt.Println(lines)
+	problems := parseLines(lines)
+
+	correctCounter := 0
+	for i, prob := range problems {
+		fmt.Printf("Quiz #%d: %s = \n", i+1, prob.q)
+		var answer string
+
+		fmt.Scanf("%s\n", &answer)
+		if answer == prob.a {
+			fmt.Println("Correct")
+			correctCounter++
+		}
+	}
+	fmt.Printf("You scored %d out of %d \n", correctCounter, len(problems))
 }
+
+
+type Problem struct {
+	q string
+	a string
+
+}
+func parseLines(lines [][]string) []Problem {
+	res := make([]Problem, len(lines))
+
+	for i, line := range lines {
+		res[i] = Problem{
+			q: line[0],
+			a: line[1],
+		}
+	}
+	return res
+}
+
 
 func exit(msg string) {
 	fmt.Println(msg)
