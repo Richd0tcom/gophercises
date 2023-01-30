@@ -25,5 +25,32 @@ return isTrue
 
 func main(){
 
-	fmt.Println(IsPalindrome(-121))
+	// fmt.Println(IsPalindrome(-121))
+	fmt.Println("yeah")
+	fmt.Println(FindJudge(3, [][]int{{1,3},{2,3}}))
 }
+
+func FindJudge(n int, trust [][]int) int {
+	if len(trust) == 0 && n ==1 {
+		return 1
+	}
+	
+	count := make([]int, int(n+1)) 
+	fmt.Println(count)
+	for _, val := range trust{
+		count[val[0]]++
+		count[val[1]]++
+	}
+	for i := range count {
+		if count[i] == n-1{
+			return i
+		}
+	}
+	return -1
+}
+
+func maxSubArray(nums []int) int {
+    return 1
+}
+
+//divide and conquer algorithm
