@@ -1,6 +1,5 @@
 package bst
 
-package main
 
 import (
 	"fmt"
